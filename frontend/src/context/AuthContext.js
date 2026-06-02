@@ -15,7 +15,6 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(localStorage.getItem('token'));
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -31,13 +30,11 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
       const res = await axios.get(`${API_URL}/auth/me`);
       setUser(res.data.user);
-      setToken(storedToken);
     } catch (error) {
       console.error('Load user error:', error);
       // Clear invalid token
       localStorage.removeItem('token');
       delete axios.defaults.headers.common['Authorization'];
-      setToken(null);
       setUser(null);
     } finally {
       setLoading(false);
@@ -47,6 +44,7 @@ export const AuthProvider = ({ children }) => {
   // Configure axios defaults and load user on mount
   useEffect(() => {
     loadUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Register
@@ -57,7 +55,6 @@ export const AuthProvider = ({ children }) => {
       
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setToken(token);
       setUser(user);
       
       toast.success('Registration successful!');
@@ -81,7 +78,6 @@ export const AuthProvider = ({ children }) => {
       
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setToken(token);
       setUser(user);
       
       toast.success('Login successful!');
@@ -99,7 +95,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     delete axios.defaults.headers.common['Authorization'];
-    setToken(null);
     setUser(null);
     toast.success('Logged out successfully');
   };

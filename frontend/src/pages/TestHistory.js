@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -13,11 +13,7 @@ const TestHistory = () => {
   const [badges, setBadges] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [historyRes, statsRes, badgesRes] = await Promise.all([
         axios.get(`${API_URL}/tests/history`),
@@ -33,7 +29,11 @@ const TestHistory = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const getCategoryColor = (category) => {
     const colors = {

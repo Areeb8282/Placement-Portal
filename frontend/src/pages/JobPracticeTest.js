@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -11,7 +11,7 @@ const JobPracticeTest = () => {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { API_URL, user } = useAuth();
+  const { API_URL } = useAuth();
   
   // applyMode = came from "Take Test & Apply" button
   const applyMode = location.state?.applyMode || false;
@@ -29,20 +29,7 @@ const JobPracticeTest = () => {
   const [submittingApplication, setSubmittingApplication] = useState(false);
   const [applicationSubmitted, setApplicationSubmitted] = useState(false);
 
-  useEffect(() => {
-    fetchJobAndGenerateQuestions();
-  }, [jobId]);
-
-  useEffect(() => {
-    if (testStarted && !testCompleted && timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0 && testStarted) {
-      handleSubmitTest();
-    }
-  }, [timeLeft, testStarted, testCompleted]);
-
-  const fetchJobAndGenerateQuestions = async () => {
+  const fetchJobAndGenerateQuestions = useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/jobs/${jobId}`);
       const jobData = res.data.job;
@@ -57,7 +44,9 @@ const JobPracticeTest = () => {
       toast.error('Failed to load job details');
       navigate('/jobs');
     }
-  };
+  }, [API_URL, jobId, navigate]);
+
+  const handleSubmitTest = useCallback(async () => {
 
   const generateJobSpecificQuestions = (jobData) => {
     const skills = jobData.skills || [];
@@ -368,7 +357,20 @@ const JobPracticeTest = () => {
         setSubmittingApplication(false);
       }
     }
-  };
+  }, [answers, questions, timeLeft, job, jobId, API_URL, applyMode, coverLetter]);
+
+  useEffect(() => {
+    fetchJobAndGenerateQuestions();
+  }, [fetchJobAndGenerateQuestions]);
+
+  useEffect(() => {
+    if (testStarted && !testCompleted && timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (timeLeft === 0 && testStarted) {
+      handleSubmitTest();
+    }
+  }, [timeLeft, testStarted, testCompleted, handleSubmitTest]);
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);

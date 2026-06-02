@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -17,11 +17,7 @@ const Jobs = () => {
     workMode: ''
   });
 
-  useEffect(() => {
-    fetchJobs();
-  }, [filters]);
-
-  const fetchJobs = async (showToast = false) => {
+  const fetchJobs = useCallback(async (showToast = false) => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -56,7 +52,11 @@ const Jobs = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL, filters]);
+
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
 
   const handleRefresh = () => {
     console.log('🔄 Manual refresh triggered');

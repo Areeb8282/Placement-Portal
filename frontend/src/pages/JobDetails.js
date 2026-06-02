@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
@@ -13,19 +13,11 @@ const JobDetails = () => {
   const { API_URL, user, isAuthenticated } = useAuth();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [applying, setApplying] = useState(false);
   const [coverLetter, setCoverLetter] = useState('');
   const [isSaved, setIsSaved] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    fetchJobDetails();
-    if (isAuthenticated && user?.role === 'student') {
-      checkIfSaved();
-    }
-  }, [id]);
-
-  const fetchJobDetails = async () => {
+  const fetchJobDetails = useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/jobs/${id}`);
       setJob(res.data.job);
@@ -36,9 +28,9 @@ const JobDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL, id, navigate]);
 
-  const checkIfSaved = async () => {
+  const checkIfSaved = useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/students/bookmarks`);
       const savedJobs = res.data.jobs || [];
@@ -46,7 +38,14 @@ const JobDetails = () => {
     } catch (error) {
       console.error('Error checking saved status:', error);
     }
-  };
+  }, [API_URL, id]);
+
+  useEffect(() => {
+    fetchJobDetails();
+    if (isAuthenticated && user?.role === 'student') {
+      checkIfSaved();
+    }
+  }, [fetchJobDetails, checkIfSaved, isAuthenticated, user?.role]);
 
   const handleSaveJob = async () => {
     if (!isAuthenticated) {

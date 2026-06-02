@@ -17,11 +17,6 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  const getDashboardLink = () => {
-    if (!user) return '/';
-    return user.role === 'student' ? '/student/dashboard' : '/recruiter/dashboard';
-  };
-
   return (
     <nav className="navbar glass">
       <div className="container">

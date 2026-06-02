@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const ClearCache = () => {
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Clear everything

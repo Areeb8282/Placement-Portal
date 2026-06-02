@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { FiBriefcase, FiFileText, FiTrendingUp, FiBookmark, FiAward, FiTarget, FiX, FiUser } from 'react-icons/fi';
+import { FiBriefcase, FiFileText, FiTrendingUp, FiAward, FiTarget, FiX, FiUser } from 'react-icons/fi';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import './Dashboard.css';
 
@@ -28,11 +28,7 @@ const StudentDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [showProfileBanner, setShowProfileBanner] = useState(false);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       const [applicationsRes, jobsRes, profileRes, testStatsRes] = await Promise.all([
         axios.get(`${API_URL}/applications/my-applications`),
@@ -68,7 +64,11 @@ const StudentDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
 
   const handleDismissBanner = () => {
     setShowProfileBanner(false);
