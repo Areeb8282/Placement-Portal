@@ -1,0 +1,314 @@
+.recruiter-applications {
+  min-height: calc(100vh - 70px);
+  padding: 2rem 0;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-tabs button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.filter-tabs button:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.filter-tabs button.active {
+  background: var(--primary);
+  color: white;
+}
+
+.applications-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.application-card {
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.application-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.applicant-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.applicant-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.applicant-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.applicant-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.application-details {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.detail-item svg {
+  color: var(--primary);
+}
+
+.cover-letter {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.cover-letter h4 {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.cover-letter p {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.application-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.application-actions .btn {
+  flex: 1;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+}
+
+.btn-success:hover {
+  background: var(--success);
+  opacity: 0.9;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: var(--danger);
+  opacity: 0.9;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 16px;
+}
+
+.empty-state svg {
+  color: var(--text-secondary);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .application-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .application-details {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .application-actions {
+    flex-direction: column;
+  }
+
+  .application-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Test Score Section */
+.test-score-section {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.test-score-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.test-score-header svg {
+  color: var(--primary);
+}
+
+.test-score-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.score-badge {
+  font-size: 1.75rem;
+  font-weight: 900;
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  min-width: 80px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.score-badge.high {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
+  color: var(--success);
+  border: 2px solid rgba(16, 185, 129, 0.4);
+}
+
+.score-badge.medium {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
+  color: var(--warning);
+  border: 2px solid rgba(245, 158, 11, 0.4);
+}
+
+.score-badge.low {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%);
+  color: var(--danger);
+  border: 2px solid rgba(239, 68, 68, 0.4);
+}
+
+.score-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.score-details span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.score-label {
+  font-weight: 700;
+  font-size: 0.95rem !important;
+}
+
+.score-label.high { color: var(--success) !important; }
+.score-label.medium { color: var(--warning) !important; }
+.score-label.low { color: var(--danger) !important; }
+
+.test-score-section.no-score {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+  padding: 0.75rem 1.25rem;
+}
+
+.test-score-section.no-score svg {
+  opacity: 0.5;
+}

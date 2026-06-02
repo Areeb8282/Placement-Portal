@@ -1,0 +1,197 @@
+.job-details-page {
+  min-height: calc(100vh - 70px);
+  padding: 2rem 0;
+}
+
+.job-details-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.job-main {
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.job-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.job-title-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.company {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-section {
+  margin-bottom: 2rem;
+}
+
+.job-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.job-section p {
+  line-height: 1.8;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.job-stats {
+  display: flex;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.apply-section {
+  padding: 2rem;
+  border-radius: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+
+.apply-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-save {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-practice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--success);
+  background: transparent;
+  color: var(--success);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-practice:hover {
+  background: var(--success);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-save:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-save.saved {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-save svg {
+  transition: all 0.3s ease;
+}
+
+.btn-save svg.filled {
+  fill: currentColor;
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 968px) {
+  .job-details-container {
+    grid-template-columns: 1fr;
+  }
+
+  .apply-section {
+    position: static;
+  }
+
+  .job-title-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .job-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.apply-note {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--primary);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}

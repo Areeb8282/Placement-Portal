@@ -1,0 +1,139 @@
+.profile-page {
+  min-height: calc(100vh - 70px);
+  padding: 2rem 0;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+  font-size: 2.5rem;
+}
+
+.completion-badge {
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-section {
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.form-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.array-item {
+  position: relative;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.btn-remove {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .profile-header h1 {
+    font-size: 2rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    padding: 1.5rem;
+  }
+}
+
+
+/* Input with Link */
+.input-with-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-with-link input {
+  flex: 1;
+}
+
+.link-icon {
+  font-size: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+}
+
+.link-icon:hover {
+  transform: scale(1.1);
+  background: var(--primary);
+}
